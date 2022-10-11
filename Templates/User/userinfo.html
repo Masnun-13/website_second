@@ -1,0 +1,74 @@
+{% extends 'User/base.html' %}
+
+
+{% block title %}
+
+User Info
+
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<style>
+    table, th, td {
+        border: 2px solid rgb(247, 208, 215);
+        height: 40px;
+    }
+
+    table {
+     margin-top:100px;
+     width: 55%;
+
+    }
+
+    th {
+     background-color: #5EB71E;
+     color: black;
+    }
+
+    td {
+     background-color: #DAF7A6;
+     color: black;
+    }
+
+    th, td {
+     padding: 15px;
+     text-align: center;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Semester</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    {% for r in uinfo %}
+    <tr>
+        <td>{{ r.user_id }}</td>
+        <td>{{ r.user }}</td>
+        <td>{{ r.user_firstname }}</td>
+        <td>{{ r.user_lastname }}</td>
+        <td>{{ r.user_semester }}</td>
+        <td><a class="btn btn-sm btn-info" href="{% url 'updateuser' r.user_id %}">Update</a></td>
+        <td><a class="btn btn-sm btn-danger" href="{% url 'deleteuser' r.user_id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="container" style="padding-left:25%; padding-right:25%; padding-top:5%;">
+
+    <button class="form-group btn btn-outline-info" type="button">
+        <a href="{% url 'enteruserinfo' %}">Enter New User Info</a>
+    </button>
+    <br>
+
+
+</div>
+
+{% endblock %}

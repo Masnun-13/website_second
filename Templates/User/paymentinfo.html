@@ -1,0 +1,78 @@
+{% extends 'User/base.html' %}
+
+
+{% block title %}
+
+Course Info
+
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<style>
+    table, th, td {
+        border: 2px solid rgb(247, 208, 215);
+        height: 40px;
+    }
+
+    table {
+     margin-top:100px;
+     width: 55%;
+
+    }
+
+    th {
+     background-color: #5EB71E;
+     color: black;
+    }
+
+    td {
+     background-color: #DAF7A6;
+     color: black;
+    }
+
+    th, td {
+     padding: 15px;
+     text-align: center;
+    }
+</style>
+
+<table>
+    <tr>
+        <th>User ID</th>
+        <th>Semester</th>
+        <th>Installment</th>
+        <th>Total Due</th>
+        <th>Total Paid</th>
+        <th>Status</th>
+    </tr>
+    {% for r in pinfo %}
+    <tr>
+        <td>{{ r.payment_userid }}</td>
+        <td>{{ r.payment_semester }}</td>
+        <td>{{ r.payment_installment }}</td>
+        <td>{{ r.payment_due }}</td>
+        <td>{{ r.payment_paid }}</td>
+        <td>{{ r.payment_status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="container" style="padding-left:25%; padding-right:25%; padding-top:5%;">
+
+    <button class="form-group btn btn-outline-info" type="button">
+        <a href="{% url 'enterpaymentinfo' %}">Generate New Payment Info</a>
+    </button>
+    <button class="form-group btn btn-outline-info" type="button">
+        <a href="{% url 'makepayment' %}">Make Payment</a>
+    </button>
+    <button class="form-group btn btn-outline-info" type="button">
+        <a href="{% url 'deletepaymentinfo' %}">Delete Payment Info</a>
+    </button>
+    <br>
+
+
+</div>
+
+{% endblock %}

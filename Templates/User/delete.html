@@ -1,0 +1,17 @@
+{% extends 'User/base.html' %}
+
+{% block title %}
+Delete User Info
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container" style="padding-left:25%; padding-right:25%; padding-top:5%;">
+		<p>Are you sure you want to delete this user's info?</p>
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+			<a class="form-group btn btn-outline-info" href="{% url 'userinfo' %}">Cancel</a>
+			<br>
+            <button class="form-group btn btn-outline-info" type="submit" name="confirmbutton">Confirm</button>
+        </form>
+    </div>
+{% endblock %}

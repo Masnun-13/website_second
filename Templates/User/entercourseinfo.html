@@ -1,0 +1,17 @@
+{% extends 'User/base.html' %}
+
+{% block title %}
+Enter User Info
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container" style="padding-left:25%; padding-right:25%; padding-top:5%;">
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            <fieldset>
+                {{ form | crispy }}
+            </fieldset>
+            <button class="form-group btn btn-outline-info" type="submit" name="submitbutton">Enter course info</button>
+        </form>
+    </div>
+{% endblock %}
